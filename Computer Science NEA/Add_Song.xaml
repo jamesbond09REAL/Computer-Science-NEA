@@ -1,0 +1,32 @@
+﻿<Window x:Class="Computer_Science_NEA.Add_Song"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Song" Height="300" Width="540">
+
+    <Canvas>
+
+        <Label Content="Name"   Canvas.Left="16" Canvas.Top="20"/>
+        <TextBox x:Name="Name_Box"   Canvas.Left="100" Canvas.Top="18" Width="260" Height="24"/>
+
+        <Label Content="Artist" Canvas.Left="16" Canvas.Top="60"/>
+        <TextBox x:Name="Artist_Box" Canvas.Left="100" Canvas.Top="58" Width="260" Height="24"/>
+
+        <Label Content="Album"  Canvas.Left="16" Canvas.Top="100"/>
+        <TextBox x:Name="Album_Box"  Canvas.Left="100" Canvas.Top="98" Width="260" Height="24"/>
+
+        <Label Content="Genres" Canvas.Left="16" Canvas.Top="140"/>
+        <TextBox x:Name="Genre_Box_1" Canvas.Left="100" Canvas.Top="138" Width="80" Height="24"/>
+        <TextBox x:Name="Genre_Box_2" Canvas.Left="188" Canvas.Top="138" Width="80" Height="24"/>
+        <TextBox x:Name="Genre_Box_3" Canvas.Left="276" Canvas.Top="138" Width="80" Height="24"/>
+
+        <Label Content="File"   Canvas.Left="16" Canvas.Top="180"/>
+        <TextBox x:Name="Path_Box"   Canvas.Left="100" Canvas.Top="178" Width="260" Height="24"/>
+
+        <Button x:Name="File_Load_Button" Content="Load from file..."
+                Canvas.Left="380" Canvas.Top="18" Width="120" Height="46" Click="File_Load_Click"/>
+
+        <Button x:Name="Add_Song_Button" Content="Add song!"
+                Canvas.Left="380" Canvas.Top="178" Width="120" Height="40" Click="Add_Song_Button_Click"/>
+
+    </Canvas>
+</Window>

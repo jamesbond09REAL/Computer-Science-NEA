@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Computer_Science_NEA"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Closing="Window_Closing">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition Width="724*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="Play_Button" Content="Play!" HorizontalAlignment="Left" Height="52" Margin="341,40,0,0" VerticalAlignment="Top" Width="106" Click="Play_Button_Click" IsEnabled="False" Grid.Column="1"/>
+        <Button x:Name="Pause_Button" HorizontalAlignment="Left" Height="52" Margin="452,40,0,0" VerticalAlignment="Top" Width="106" Click="Pause_Button_Click" IsCancel="True" Content="pause&#xD;&#xA;" IsEnabled="False" Grid.Column="1"/>
+        <Button x:Name="Stop_Button" Content="Stop." HorizontalAlignment="Left" Height="52" Margin="563,40,0,0" VerticalAlignment="Top" Width="106" Click="Stop_Button_Click" IsEnabled="False" Grid.Column="1"/>
+        <Button x:Name="Add_Song_Button" Content="Add songs" Grid.Column="1" Margin="76,0,570,154" Height="74" VerticalAlignment="Bottom" Click="Add_Song_Button_Click"/>
+        <ComboBox x:Name="Song_Combo_Box" Grid.Column="1" HorizontalAlignment="Left" Margin="341,138,0,0" VerticalAlignment="Top" Width="261" Height="48" SelectionChanged="Song_Combo_Box_SelectionChanged"/>
+        <Button x:Name="Testbutton" Content="Add songs" Grid.Column="1" Margin="317,0,329,83" Height="74" VerticalAlignment="Bottom" Click="Test"/>
 
     </Grid>
 </Window>
