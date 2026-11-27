@@ -73,7 +73,7 @@ namespace Computer_Science_NEA
             createtable.ExecuteNonQuery();
             connection.Close();
         }
-        public void SaveNewSong(Song song) 
+        public void SaveNewSong(Song song,int tracknum) 
         {
 
             var connection = new SqliteConnection($"Data Source={Full_DB_Path}");
@@ -87,7 +87,7 @@ namespace Computer_Science_NEA
             command.Parameters.AddWithValue("$album", song.Album);
 
             command.ExecuteNonQuery();
-            command.Parameters.Clear();
+            
             command.CommandText = $@"
             INSERT OR IGNORE INTO Artists(Artist)
             SELECT($artist)
@@ -96,14 +96,21 @@ namespace Computer_Science_NEA
             command.Parameters.AddWithValue("$artist", song.Primary_Artist);
 
             command.ExecuteNonQuery();
-            command.Parameters.Clear();
+            
             command.CommandText = @"
                    INSERT INTO Songs (Name, Path, Artist)
                    VALUES ($name, $path, $artist)
+                   RETURNING SongID
                                     ";
             command.Parameters.AddWithValue("$name", song.Name);
             command.Parameters.AddWithValue("$path", song.Path);
-            command.Parameters.AddWithValue("$artist", song.Primary_Artist);
+            
+            int SongID = (int)(long)command.ExecuteScalar();
+            command.CommandText = @"
+                INSERT INTO AlbumSongs (Album, SongID, Track)
+                VALUES ($album,$SongID,$track)";
+            command.Parameters.AddWithValue("$SongID", SongID);
+            command.Parameters.AddWithValue("$track", tracknum);
             command.ExecuteNonQuery();
             connection.Close();
             

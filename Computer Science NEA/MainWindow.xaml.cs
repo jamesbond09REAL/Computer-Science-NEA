@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
+using System.IO;
 using System.Net.Security;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,9 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
 
 namespace Computer_Science_NEA
 {
@@ -27,8 +27,8 @@ namespace Computer_Science_NEA
         AudioFileReader Audio_File;
         DatabaseManager DB = new DatabaseManager();
         Playback Main_Playback = new Playback();
-        
-        
+        List<Song> Song_List = new List<Song>();
+        Song Selected_Song = new Song();
         
         public MainWindow()
         {
@@ -38,7 +38,7 @@ namespace Computer_Science_NEA
 
         private void Pause_Button_Click(object sender, RoutedEventArgs e)//Pauses a potential Output_Device
         {
-            Output_Device?.Pause();
+            Main_Playback.Pause_Playback();
         }
 
        
@@ -47,7 +47,10 @@ namespace Computer_Science_NEA
 
         private async void Play_Button_Click(object sender, RoutedEventArgs e)//Manages playback within the program async to prevent freezing the rest of the application
         {
-            
+            List<string> DetailList = Main_Playback.Get_Playback_Details(Selected_Song);
+            Main_Playback.Play_Song(Selected_Song); 
+            Name_Box.Text = DetailList[0];
+            Artist_Box.Text = DetailList[1];
             
             
         }
@@ -77,18 +80,29 @@ namespace Computer_Science_NEA
 
         private void Song_Combo_Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            if (Song_Combo_Box.SelectedItem is Song song)
+            {
+                Selected_Song = song;
+                Play_Button.IsEnabled = true;
+                Pause_Button.IsEnabled = true;
+                Stop_Button.IsEnabled = true;
+                
+            }
+            else
+            {
+                Play_Button.IsEnabled = false;
+                Pause_Button.IsEnabled = false;
+                Stop_Button.IsEnabled = false;
+            }
+
+
         }
 
         private void Test(object sender, RoutedEventArgs e)
         {
             
-            List<Song> SongsInDB = DB.LoadSongs();
-            SongsInDB.ForEach(song =>
-            {
-                string Data = $"{song.id} {song.Name} {song.Primary_Artist}";
-                Song_Combo_Box.Items.Add(Data);
-            });
+            Song_List = DB.LoadSongs();
+            Song_Combo_Box.ItemsSource = Song_List;
         }
     }
 }

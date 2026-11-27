@@ -18,6 +18,8 @@
         <Button x:Name="Add_Song_Button" Content="Add songs" Grid.Column="1" Margin="76,0,570,154" Height="74" VerticalAlignment="Bottom" Click="Add_Song_Button_Click"/>
         <ComboBox x:Name="Song_Combo_Box" Grid.Column="1" HorizontalAlignment="Left" Margin="341,138,0,0" VerticalAlignment="Top" Width="261" Height="48" SelectionChanged="Song_Combo_Box_SelectionChanged"/>
         <Button x:Name="Testbutton" Content="Add songs" Grid.Column="1" Margin="317,0,329,83" Height="74" VerticalAlignment="Bottom" Click="Test"/>
+        <TextBox x:Name="Name_Box" HorizontalAlignment="Left" Height="26" Margin="23,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Grid.ColumnSpan="2" IsEnabled="False"/>
+        <TextBox x:Name="Artist_Box" HorizontalAlignment="Left" Height="26" Margin="130,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Grid.Column="1" IsEnabled="False"/>
 
     </Grid>
 </Window>

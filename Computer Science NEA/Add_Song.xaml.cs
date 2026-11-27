@@ -30,6 +30,7 @@ namespace Computer_Science_NEA
                 Name_Box.Text = Metadata.Tag.Title ?? "Not Found";
                 Artist_Box.Text = Metadata.Tag.FirstPerformer ?? "Not Found";
                 Album_Box.Text = Metadata.Tag.Album ?? "Not Found";
+                Track_Box.Text = (Metadata.Tag.Track).ToString() ?? "0";
                 string[] Genres = Metadata.Tag.Genres ?? ["Not Found", "Not Found", "Not Found"];
                 try
                 {
@@ -66,8 +67,13 @@ namespace Computer_Science_NEA
             string[] Genres = [Genre_Box_1.Text, Genre_Box_2.Text,Genre_Box_3.Text];
             var New_Song = CV.Create_Song(Name_Box.Text,Genres,Album_Box.Text,Artist_Box.Text,Path_Box.Text);
             DB.InitDB();
-            DB.SaveNewSong(New_Song);
+            DB.SaveNewSong(New_Song,int.Parse(Track_Box.Text));
             
+        }
+
+        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
         }
     }
 }

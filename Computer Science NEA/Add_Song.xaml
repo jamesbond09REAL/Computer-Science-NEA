@@ -27,6 +27,7 @@
 
         <Button x:Name="Add_Song_Button" Content="Add song!"
                 Canvas.Left="380" Canvas.Top="178" Width="120" Height="40" Click="Add_Song_Button_Click"/>
+        <TextBox x:Name="Track_Box" Height="24" Canvas.Left="387" TextWrapping="Wrap" Canvas.Top="98" Width="47" TextChanged="TextBox_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
     </Canvas>
 </Window>

@@ -28,6 +28,7 @@ namespace Computer_Science_NEA
         public string Primary_Artist { get; set; } = "";
         public string Path { get; set; } = "";
         public string Thumbnail_Path { get; set; } = "";
+        public override string ToString() => $"{id} {Name} {Primary_Artist}";
         
         
 
@@ -36,6 +37,27 @@ namespace Computer_Science_NEA
     {
         WasapiPlayer Output_Device;
         AudioFileReader Audio_File;
+        List<string> datastring = new List<string>();
+        public List<string> Get_Playback_Details(Song song)
+        {
+            
+            if ((Output_Device?.PlaybackState == PlaybackState.Playing) || (Output_Device?.PlaybackState == PlaybackState.Paused))
+            {
+                return datastring;
+            }
+            else
+            {
+                datastring.Clear();
+                datastring.Add(song.Name);
+                datastring.Add(song.Primary_Artist);
+                return datastring;
+            }
+            
+        }
+        public void Pause_Playback()
+        {
+            Output_Device?.Pause();
+        }
         public void Stop_Playback() //Method to stop playback and clear variables for the Output_Device and Audio_File
         {
 
@@ -85,6 +107,7 @@ namespace Computer_Science_NEA
                 }
             }
             Stop_Playback(); //call Stop_Playback after song is finished
+            return;
         }
     }
 }
